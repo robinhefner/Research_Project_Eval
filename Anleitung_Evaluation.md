@@ -23,6 +23,7 @@ Nach dem Start siehst du einen geteilten Bildschirm:
     
     > [!TIP]
     > **Nutze die Kommentarfelder gerne intensiv!** Falls du eine Bewertung vergibst, die vom Optimum abweicht (z. B. eine 2 oder 3), oder wenn dir konkrete medizinische Ungereimtheiten, auffällige Zeitabstände oder unplausible Medikamentendosen ins Auge springen, trage dies bitte kurz ein. Deine Anmerkungen helfen uns enorm dabei, deine Entscheidungen medizinisch nachzuvollziehen.
+    > **Tipp zur Referenzierung:** Du kannst gerne die **IDs bzw. Zeilenschlüssel aus den Tabellen des PDF-Dokuments** (z. B. bei Medikamenten, Prozeduren oder Laborwerten) kopieren oder hineinschreiben, um dich im Kommentar präzise auf einzelne Zeilen zu beziehen!
 
   **Bedeutung der Bewertungsskala (1 bis 5):**
   Die Bewertung erfolgt über eine 5-stufige Likert-Skala von **1** (schlechtester Wert) bis **5** (bester Wert):
@@ -36,27 +37,35 @@ Nach dem Start siehst du einen geteilten Bildschirm:
 
 ## 3. Die 4 Bewertungskriterien im Detail
 
-Hier findest du eine detaillierte Beschreibung der Kriterien, der dazugehörigen Antwortskalen und praxisnahe Beispiele zur Orientierung:
+Hier findest du eine detaillierte Beschreibung der Kriterien und praxisnahe Beispiele zur Orientierung:
 
 ### Kriterium 1: Klinische Plausibilität
-* **Beschreibung:** Bewertet, ob Symptome, Diagnosen und Behandlungen medizinisch logisch zusammenpassen und der Verlauf klinisch plausibel ist.
+* **Beschreibung:** Bewertet, ob Symptome, Diagnosen und Behandlungen medizinisch logisch zusammenpassen.
 * **Beispiele:**
-  * **Wert 1 (Sehr unplausibel):** Ein Patient stellt sich mit einem leichten Schnupfen vor und erhält am selben Tag ohne weitere Diagnosen eine offene Herzoperation.
-  * **Wert 3 (Teilweise plausibel):** Die Hauptdiagnose passt zur Operation, aber es fehlen wesentliche Begleitmedikamente oder es werden unübliche Wirkstoffe ohne ersichtlichen Grund verordnet.
-  * **Wert 5 (Sehr plausibel):** Ein Herzinfarkt-Patient erhält leitliniengerechte Diagnostik (EKG, Labor) und die standardmäßige Akuttherapie (ASS, Heparin, Koronarangiographie) – alles wirkt absolut lebensecht.
+  * **Wert 1 (Sehr unplausibel):** Ein Patient stellt sich mit einem leichten Schnupfen vor und erhält am selben Tag ohne weitere Diagnostik eine offene Herzoperation. Oder ein Patient mit bekanntem Bluthochdruck erhält zur Senkung des Blutdrucks ein Parkinson-Medikament, ohne dass eine entsprechende Begleiterkrankung vorliegt.
+  * **Wert 3 (Teilweise plausibel):** Die Diagnose passt grundsätzlich zur verordneten Therapie, aber es fehlen wesentliche Begleitmedikamente oder es werden unübliche Wirkstoffkombinationen ohne ersichtlichen Grund verordnet.
+  * **Wert 5 (Sehr plausibel):** Ein Patient mit Verdacht auf einen Herzinfarkt erhält eine absolut leitliniengerechte Akutdiagnostik (EKG, Labor) und die standardmäßige Therapie (ASS, Heparin, Koronarangiographie).
 
 ### Kriterium 2: Longitudinale Konsistenz
-* **Beschreibung:** Prüft, ob die Patientengeschichte über die Zeit hinweg konsistent dokumentiert ist (keine plötzlichen unlogischen Sprünge).
+* **Beschreibung:** Prüft, ob der zeitliche Verlauf der Erkrankung und Behandlung in sich stimmig ist (keine plötzlichen unlogischen Sprünge oder widersprüchliche Krankheitsverläufe über die Jahre hinweg).
 * **Beispiele:**
-  * **Wert 1 (Sehr inkonsistent):** Im Januar wird die Amputation beider Beine dokumentiert, aber im März geht der Patient laut Akte beschwerdefrei joggen. Oder eine schwere chronische Erkrankung (z.B. Niereninsuffizienz) verschwindet plötzlich ohne Behandlung aus der Akte.
-  * **Wert 3 (Teilweise konsistent):** Der rote Faden ist erkennbar, aber Laborwerte springen biologisch unmöglich hin und her, oder eine chronische Diagnose fehlt temporär in einigen Arztbriefen und taucht später wieder auf.
-  * **Wert 5 (Sehr konsistent):** Chronische Diagnosen werden über Jahre hinweg konsistent fortgeführt, Folgemedikationen passen zu den Vorbefunden und der Verlauf zeigt eine kontinuierliche, logische Entwicklung.
+  * **Wert 1 (Sehr inkonsistent):** Biologisch unmögliche Krankheitsverläufe oder zeitliche Widersprüche. Beispielsweise eine irreversible chronische Erkrankung (z. B. eine fortgeschrittene Niereninsuffizienz) verschwindet plötzlich und spurlos aus dem Verlauf, ohne dass eine Transplantation stattfand.
+  * **Wert 3 (Teilweise konsistent):** Der rote Faden des Verlaufs ist erkennbar, zeigt aber Lücken. Beispielsweise wird ein Diabetes mellitus über 10 Jahre dokumentiert, im mittleren Zeitraum fehlen jedoch für 3 Jahre plötzlich jegliche Medikationsverschreibungen oder Kontrollen, bevor sie später unverändert fortgesetzt werden.
+  * **Wert 5 (Sehr konsistent):** Alle chronischen Erkrankungen, Behandlungen und Kontrollen bauen über die Jahre hinweg logisch und lückenlos aufeinander auf und zeigen einen lebensechten, physiologisch schlüssigen Alterungs- und Krankheitsverlauf.
+
+> [!NOTE]
+> **💡 Wichtige Abgrenzung zwischen Plausibilität (Kriterium 1) und Konsistenz (Kriterium 2):**
+> * **Klinische Plausibilität (Kriterium 1)** fragt: *„Macht das dokumentierte Vorgehen **medizinisch** Sinn?“*
+>   * *Beispiel:* Ist die Behandlung eines Harnwegsinfekts mit Antibiotikum X leitliniengerecht? (Ja = Plausibel).
+> * **Longitudinale Konsistenz (Kriterium 2)** fragt: *„Stimmen die **Daten im zeitlichen Verlauf** der Akte überein?“*
+>   * *Beispiel:* Bleibt eine einmal dokumentierte irreversible Erkrankung (z. B. Demenz) im Verlauf der Folgejahre bestehen und wird fortgeführt? Oder verhalten sich die Werte über die Zeit hinweg biologisch logisch? (Ja = Konsistent).
+
 
 ### Kriterium 3: Zeitlich logische Abfolge
 * **Beschreibung:** Bewertet die chronologische Reihenfolge der Ereignisse (z. B. Diagnostik vor Therapie, logische Abstände der Kontrollen).
 * **Beispiele:**
-  * **Wert 1 (Sehr unlogisch):** Eine Chemotherapie wird gestartet, bevor überhaupt die Diagnostik oder die Erstdiagnose stattgefunden hat. Oder das Datum eines Entlassungsbriefs liegt vor dem Aufnahmedatum.
-  * **Wert 3 (Teilweise logisch):** Die Abfolge der Schritte stimmt, aber die zeitlichen Abstände sind unrealistisch (z. B. eine routinemäßige postoperative Kontrolle nach einer schweren OP erfolgt erst nach 3 Jahren statt nach 3 Monaten).
+  * **Wert 1 (Sehr unlogisch):** Eine Chemotherapie wird gestartet, bevor überhaupt die Diagnostik oder die Erstdiagnose in der Akte stattgefunden hat. Oder das dokumentierte Datum einer Entlassung liegt zeitlich vor dem Aufnahmedatum.
+  * **Wert 3 (Teilweise logisch):** Die Abfolge der Schritte stimmt, aber die zeitlichen Abstände sind unrealistisch (z. B. eine routinemäßige postoperative Kontrolle nach einer schweren OP erfolgt laut Akte erst nach 3 Jahren statt nach 3 Monaten).
   * **Wert 5 (Sehr logisch):** Logischer zeitlicher Ablauf von Erstvorstellung, Diagnostik, Diagnosestellung, Therapieeinleitung und Nachsorgekontrollen mit absolut realitätsnahen Zeitintervallen.
 
 ### Kriterium 4: Gesamteindruck
