@@ -2,7 +2,7 @@
 
 Herzlich willkommen und vielen Dank für deine Unterstützung bei unserem Forschungsprojekt! 
 
-Diese Webanwendung dient dazu, synthetisch generierte Patientenakten strukturiert von medizinischem Fachpersonal bewerten zu lassen. Deine fachliche Einschätzung hilft uns, die Qualität und den Realismus der generierten Daten zu evaluieren.
+Diese Webanwendung dient dazu, Patientenakten strukturiert von medizinischem Fachpersonal bewerten zu lassen. Deine fachliche Einschätzung hilft uns, die Qualität und den Realismus der Daten zu evaluieren.
 
 ## 1. Anmeldung & Start
 1. Öffne den Link zur Evaluations-Plattform. (https://eval.rhefner.de/)
@@ -19,25 +19,63 @@ Nach dem Start siehst du einen geteilten Bildschirm:
   
   **Hilfreiche Zusatzfunktionen:**
   * **Erklärungen / Tooltips (`i`):** Neben jedem Kriterium befindet sich ein kleines `i`-Symbol. Halte die Maus darüber, um eine genaue Erklärung zu sehen, was mit dem jeweiligen Kriterium gemeint ist.
-  * **Optionale Kommentare (`+`):** Über das kleine Plus-Zeichen (`+`) neben dem Namen des Kriteriums kannst du ein Freitextfeld einblenden.
+  * **Optionale Kommentare (Freitext):** Unter jeder Bewertungsskala findest du ein Freitextfeld für optionale Anmerkungen.
     
     > [!TIP]
     > **Nutze die Kommentarfelder gerne intensiv!** Falls du eine Bewertung vergibst, die vom Optimum abweicht (z. B. eine 2 oder 3), oder wenn dir konkrete medizinische Ungereimtheiten, auffällige Zeitabstände oder unplausible Medikamentendosen ins Auge springen, trage dies bitte kurz ein. Deine Anmerkungen helfen uns enorm dabei, deine Entscheidungen medizinisch nachzuvollziehen.
 
-  **Was bedeuten die Zahlen 1 bis 5?**
-  Die Skala reicht immer von der schlechtesten (1) bis zur besten (5) Bewertung:
-  * **1** = Sehr negativ (z.B. sehr unplausibel, sehr inkonsistent, sehr unlogisch oder insgesamt schlecht)
-  * **5** = Sehr positiv (z.B. sehr plausibel, sehr konsistent, sehr logisch oder insgesamt hervorragend)
-  * Die Werte **2, 3 und 4** dienen zur feineren Abstufung deiner Einschätzung dazwischen.
+  **Bedeutung der Bewertungsskala (1 bis 5):**
+  Die Bewertung erfolgt über eine 5-stufige Likert-Skala von **1** (schlechtester Wert) bis **5** (bester Wert):
+  * **1 = Sehr negativ** (völlig unplausibel, extrem inkonsistent, unlogisch oder unbrauchbar)
+  * **2 = Eher negativ** (deutliche Schwächen und Widersprüche)
+  * **3 = Neutral / Teilweise** (teilweise plausibel/konsistent, aber mit Optimierungsbedarf)
+  * **4 = Eher positiv** (gute Qualität mit nur minimalen, vernachlässigbaren Unstimmigkeiten)
+  * **5 = Sehr positiv** (absolut lebensecht, fehlerfrei und nicht von einer echten Akte zu unterscheiden)
 
-## 3. Speichern & Fortschritt
+---
+
+## 3. Die 4 Bewertungskriterien im Detail
+
+Hier findest du eine detaillierte Beschreibung der Kriterien, der dazugehörigen Antwortskalen und praxisnahe Beispiele zur Orientierung:
+
+### Kriterium 1: Klinische Plausibilität
+* **Beschreibung:** Bewertet, ob Symptome, Diagnosen und Behandlungen medizinisch logisch zusammenpassen und der Verlauf klinisch plausibel ist.
+* **Beispiele:**
+  * **Wert 1 (Sehr unplausibel):** Ein Patient stellt sich mit einem leichten Schnupfen vor und erhält am selben Tag ohne weitere Diagnosen eine offene Herzoperation.
+  * **Wert 3 (Teilweise plausibel):** Die Hauptdiagnose passt zur Operation, aber es fehlen wesentliche Begleitmedikamente oder es werden unübliche Wirkstoffe ohne ersichtlichen Grund verordnet.
+  * **Wert 5 (Sehr plausibel):** Ein Herzinfarkt-Patient erhält leitliniengerechte Diagnostik (EKG, Labor) und die standardmäßige Akuttherapie (ASS, Heparin, Koronarangiographie) – alles wirkt absolut lebensecht.
+
+### Kriterium 2: Longitudinale Konsistenz
+* **Beschreibung:** Prüft, ob die Patientengeschichte über die Zeit hinweg konsistent dokumentiert ist (keine plötzlichen unlogischen Sprünge).
+* **Beispiele:**
+  * **Wert 1 (Sehr inkonsistent):** Im Januar wird die Amputation beider Beine dokumentiert, aber im März geht der Patient laut Akte beschwerdefrei joggen. Oder eine schwere chronische Erkrankung (z.B. Niereninsuffizienz) verschwindet plötzlich ohne Behandlung aus der Akte.
+  * **Wert 3 (Teilweise konsistent):** Der rote Faden ist erkennbar, aber Laborwerte springen biologisch unmöglich hin und her, oder eine chronische Diagnose fehlt temporär in einigen Arztbriefen und taucht später wieder auf.
+  * **Wert 5 (Sehr konsistent):** Chronische Diagnosen werden über Jahre hinweg konsistent fortgeführt, Folgemedikationen passen zu den Vorbefunden und der Verlauf zeigt eine kontinuierliche, logische Entwicklung.
+
+### Kriterium 3: Zeitlich logische Abfolge
+* **Beschreibung:** Bewertet die chronologische Reihenfolge der Ereignisse (z. B. Diagnostik vor Therapie, logische Abstände der Kontrollen).
+* **Beispiele:**
+  * **Wert 1 (Sehr unlogisch):** Eine Chemotherapie wird gestartet, bevor überhaupt die Diagnostik oder die Erstdiagnose stattgefunden hat. Oder das Datum eines Entlassungsbriefs liegt vor dem Aufnahmedatum.
+  * **Wert 3 (Teilweise logisch):** Die Abfolge der Schritte stimmt, aber die zeitlichen Abstände sind unrealistisch (z. B. eine routinemäßige postoperative Kontrolle nach einer schweren OP erfolgt erst nach 3 Jahren statt nach 3 Monaten).
+  * **Wert 5 (Sehr logisch):** Logischer zeitlicher Ablauf von Erstvorstellung, Diagnostik, Diagnosestellung, Therapieeinleitung und Nachsorgekontrollen mit absolut realitätsnahen Zeitintervallen.
+
+### Kriterium 4: Gesamteindruck
+* **Beschreibung:** Ihre globale Einschätzung der Qualität und des Realismus dieser Patientenakte.
+* **Beispiele:**
+  * **Wert 1 (Schlecht):** Die Akte ist medizinisch unbrauchbar, enthält eklatante logische Widersprüche und wirkt völlig künstlich.
+  * **Wert 3 (Mittelmäßig):** Die Akte hat zwar einige Schwachstellen (z. B. fehlende Details oder unübliche zeitliche Abstände), könnte aber mit kleineren Korrekturen für Forschungszwecke nützlich sein.
+  * **Wert 5 (Hervorragend):** Die Akte ist von einer echten medizinischen Patientenakte nicht zu unterscheiden und eignet sich perfekt für Lehre, Forschung und Simulation.
+
+---
+
+## 4. Speichern & Fortschritt
 Sobald du alle Kriterien für einen Patienten ausgefüllt hast, klicke unten rechts auf **"Speichern & Weiter"**.
 * **Zufällige Reihenfolge:** Um Verzerrungen durch die Reihenfolge zu vermeiden, werden dir die Patientenakten komplett zufällig präsentiert.
 * **Keine doppelten Bewertungen:** Das System merkt sich genau, welche Akten du bereits bewertet hast. Dir wird keine Akte zweimal vorgelegt.
 * **Endgültige Speicherung:** Bitte beachte, dass eine Bewertung nach dem Klick auf "Speichern & Weiter" endgültig an die Datenbank gesendet wird und danach nicht mehr nachträglich verändert werden kann.
 * **Jederzeit pausieren:** Dein Fortschritt wird nach jedem Klick auf "Speichern & Weiter" automatisch in der Cloud gespeichert. Du kannst den Browser jederzeit schließen. Wenn du später (oder sogar an einem anderen Computer) zurückkehrst und deinen Namen erneut auswählst, machst du exakt da weiter, wo du aufgehört hast!
 
-## 4. Abschluss
+## 5. Abschluss
 Oben in der Mitte siehst du eine Fortschrittsanzeige (z.B. "Patient 4 von 100"). Sobald du alle verfügbaren Patientenakten bewertet hast, gelangst du automatisch zu einem Abschlussbildschirm. Du musst danach nichts weiter tun, all deine Daten sind sicher übermittelt worden.
 
 Vielen Dank für deine wertvolle Zeit und Expertise!

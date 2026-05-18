@@ -190,7 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="criterion-header">
                     <div class="criterion-title">${c.title}</div>
                     <div class="header-actions">
-                        <button type="button" class="btn-comment-toggle" data-id="${c.id}" title="Kommentar hinzufügen">+</button>
                         <div class="tooltip-container">
                             <span class="info-icon" title="">i</span>
                             <div class="tooltip-text">${c.description}</div>
@@ -204,40 +203,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span>${c.minLabel}</span>
                     <span>${c.maxLabel}</span>
                 </div>
-                <div id="${c.id}-comment-container" class="comment-container">
+                <div class="comment-container">
                     <textarea name="${c.id}_comment" class="comment-textarea" placeholder="Kommentar hinzufügen (optional)..."></textarea>
                 </div>
             `;
             criteriaContainer.appendChild(group);
         });
-
-        // Event-Delegation für die Kommentar-Buttons (nur einmal hinzufügen)
-        criteriaContainer.removeEventListener('click', handleCommentToggle);
-        criteriaContainer.addEventListener('click', handleCommentToggle);
-    }
-
-    function handleCommentToggle(e) {
-        const toggleBtn = e.target.closest('.btn-comment-toggle');
-        if (!toggleBtn) return;
-        
-        const criterionId = toggleBtn.getAttribute('data-id');
-        const container = document.getElementById(`${criterionId}-comment-container`);
-        if (!container) return;
-        
-        if (container.classList.contains('active')) {
-            container.classList.remove('active');
-            toggleBtn.textContent = '+';
-            toggleBtn.title = 'Kommentar hinzufügen';
-            toggleBtn.classList.remove('active');
-        } else {
-            container.classList.add('active');
-            toggleBtn.textContent = '−'; // Echtes Minuszeichen
-            toggleBtn.title = 'Kommentar ausblenden';
-            toggleBtn.classList.add('active');
-            
-            const textarea = container.querySelector('textarea');
-            if (textarea) textarea.focus();
-        }
     }
 
     // --- Navigation & UI ---
@@ -258,17 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBar.style.width = `${(currentPatientNum / state.totalPdfs) * 100}%`;
 
         evalForm.reset();
-
-        // Reset comment toggle states
-        const activeContainers = criteriaContainer.querySelectorAll('.comment-container.active');
-        activeContainers.forEach(container => container.classList.remove('active'));
-        
-        const activeButtons = criteriaContainer.querySelectorAll('.btn-comment-toggle.active');
-        activeButtons.forEach(btn => {
-            btn.classList.remove('active');
-            btn.textContent = '+';
-            btn.title = 'Kommentar hinzufügen';
-        });
 
         // Hide prev button as we don't allow going back to already saved ones in cloud mode
         btnPrev.style.display = 'none';

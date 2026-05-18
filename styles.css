@@ -434,51 +434,9 @@ p { color: var(--text-muted); margin-bottom: 1.5rem; }
     align-items: center;
 }
 
-.btn-comment-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    background-color: var(--border-color);
-    color: var(--text-muted);
-    border: none;
-    border-radius: 50%;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    line-height: 1;
-    user-select: none;
-}
-
-.btn-comment-toggle:hover {
-    background-color: var(--primary);
-    color: white;
-    transform: scale(1.1);
-}
-
-.btn-comment-toggle.active {
-    background-color: #64748b;
-    color: white;
-}
-
-.btn-comment-toggle.active:hover {
-    background-color: #ef4444;
-}
-
 .comment-container {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    margin-top: 0;
-}
-
-.comment-container.active {
-    max-height: 100px;
     opacity: 1;
-    margin-top: 1rem;
+    margin-top: 0.75rem;
 }
 
 .comment-textarea {
