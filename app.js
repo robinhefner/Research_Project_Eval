@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     // --- App Zugriffsschutz ---
-    const APP_PASSWORD = 'evaluation2026';
+    const APP_PASSWORD = 'ResearchProject2026';
 
     // --- Configuration ---
     // List of PDFs
