@@ -134,11 +134,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Prototype Evaluation Criteria (Likert 1-5)
     const criteria = [
-        { id: 'c1', title: '1. Klinische Plausibilität', minLabel: 'Sehr unplausibel', maxLabel: 'Sehr plausibel' },
-        { id: 'c2', title: '2. Vollständigkeit der Historie', minLabel: 'Unvollständig', maxLabel: 'Sehr vollständig' },
-        { id: 'c3', title: '3. Realismus der Medikation', minLabel: 'Unrealistisch', maxLabel: 'Sehr realistisch' },
-        { id: 'c4', title: '4. Konsistenz der Diagnosen', minLabel: 'Inkonsistent', maxLabel: 'Sehr konsistent' },
-        { id: 'c5', title: '5. Gesamteindruck', minLabel: 'Schlecht', maxLabel: 'Hervorragend' }
+        {
+            id: 'c1',
+            title: '1. Klinische Plausibilität',
+            description: 'Bewertet, ob Symptome, Diagnosen und Behandlungen medizinisch logisch zusammenpassen und der Verlauf klinisch plausibel ist.',
+            minLabel: 'Sehr unplausibel',
+            maxLabel: 'Sehr plausibel'
+        },
+        {
+            id: 'c2',
+            title: '2. Longitudinale Konsistenz',
+            description: 'Prüft, ob die Patientengeschichte über die Zeit hinweg konsistent dokumentiert ist (keine plötzlichen unlogischen Sprünge).',
+            minLabel: 'Sehr inkonsistent',
+            maxLabel: 'Sehr konsistent'
+        },
+        {
+            id: 'c3',
+            title: '3. Zeitlich logische Abfolge',
+            description: 'Bewertet die chronologische Reihenfolge der Ereignisse (z. B. Diagnostik vor Therapie, logische Abstände der Kontrollen).',
+            minLabel: 'Sehr unlogisch',
+            maxLabel: 'Sehr logisch'
+        },
+        {
+            id: 'c4',
+            title: '4. Gesamteindruck',
+            description: 'Ihre globale Einschätzung der Qualität und des Realismus dieser Patientenakte.',
+            minLabel: 'Schlecht',
+            maxLabel: 'Hervorragend'
+        }
     ];
 
     // --- State ---
@@ -166,10 +189,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const criteriaContainer = document.getElementById('criteria-container');
     const btnPrev = document.getElementById('btn-prev');
     const btnRestart = document.getElementById('btn-restart');
-    
+
     // Wir verstecken/entfernen den CSV Download Button, da der Forscher die Daten direkt aus Supabase exportiert.
     const btnDownloadCsv = document.getElementById('btn-download-csv');
-    if(btnDownloadCsv) btnDownloadCsv.style.display = 'none';
+    if (btnDownloadCsv) btnDownloadCsv.style.display = 'none';
 
     // --- Initialization ---
     initApp();
@@ -196,7 +219,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             group.innerHTML = `
-                <div class="criterion-title">${c.title}</div>
+                <div class="criterion-header">
+                    <div class="criterion-title">${c.title}</div>
+                    <div class="tooltip-container">
+                        <span class="info-icon" title="">i</span>
+                        <div class="tooltip-text">${c.description}</div>
+                    </div>
+                </div>
                 <div class="likert-scale">
                     ${radiosHtml}
                 </div>
@@ -287,12 +316,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     evalForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const btnNext = document.getElementById('btn-next');
         const originalText = btnNext.textContent;
         btnNext.textContent = 'Speichert...';
         btnNext.disabled = true;
-        
+
         // Gather responses
         const formData = new FormData(evalForm);
         const responses = {};
@@ -308,18 +337,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const { error } = await supabase
                 .from('evaluations')
                 .insert([
-                    { 
-                        doctor_name: state.doctorName, 
-                        pdf_filename: pdfName, 
+                    {
+                        doctor_name: state.doctorName,
+                        pdf_filename: pdfName,
                         c1: parseInt(responses.c1),
                         c2: parseInt(responses.c2),
                         c3: parseInt(responses.c3),
                         c4: parseInt(responses.c4),
-                        c5: parseInt(responses.c5),
                         created_at: timestamp
                     }
                 ]);
-            
+
             if (error) throw error;
 
             // Erfolgreich gespeichert, entferne PDF aus verbleibender Liste
