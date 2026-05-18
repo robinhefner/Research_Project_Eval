@@ -6,20 +6,28 @@ Diese Webanwendung dient dazu, synthetisch generierte Patientenakten strukturier
 
 ## 1. Anmeldung & Start
 1. Öffne den Link zur Evaluations-Plattform. (https://eval.rhefner.de/)
-2. Wähle auf der Startseite den dir zugewiesenen Arzt aus dem Dropdown-Menü aus.
-3. Klicke auf **"Evaluation starten"**.
+2. Gib das Passwort **evaluation2026** ein und klicke auf **"Freischalten"**.
+3. Wähle auf der Startseite den dir zugewiesenen Arzt aus dem Dropdown-Menü aus.
+4. Klicke auf **"Evaluation starten"**.
 
-*Hinweis:* Es wird kein Passwort benötigt. Bitte achte darauf, bei jeder Sitzung denselben Namen auszuwählen, damit dein bisheriger Fortschritt aus der Cloud korrekt geladen wird.
+*Hinweis:* Bitte achte darauf, bei jeder Sitzung denselben Namen auszuwählen, damit dein bisheriger Fortschritt aus der Cloud korrekt geladen wird.
 
 ## 2. Die Bewertungsansicht
 Nach dem Start siehst du einen geteilten Bildschirm:
 * **Linke Seite (Klinische Akte):** Hier wird die generierte Patientenakte als PDF angezeigt. Du kannst in dem Dokument wie gewohnt lesen und scrollen.
-* **Rechte Seite (Bewertung):** Hier findest du einen Fragebogen mit 5 Kriterien (Likert-Skala 1 bis 5). Bitte bewerte die aktuell angezeigte Patientenakte hinsichtlich aller vorgegebenen Punkte. 
+* **Rechte Seite (Bewertung):** Hier findest du einen Fragebogen mit 4 wissenschaftlichen Kriterien (Likert-Skala 1 bis 5). Bitte bewerte die aktuell angezeigte Patientenakte hinsichtlich aller Punkte.
   
+  **Hilfreiche Zusatzfunktionen:**
+  * **Erklärungen / Tooltips (`i`):** Neben jedem Kriterium befindet sich ein kleines `i`-Symbol. Halte die Maus darüber, um eine genaue Erklärung zu sehen, was mit dem jeweiligen Kriterium gemeint ist.
+  * **Optionale Kommentare (`+`):** Über das kleine Plus-Zeichen (`+`) neben dem Namen des Kriteriums kannst du ein Freitextfeld einblenden.
+    
+    > [!TIP]
+    > **Nutze die Kommentarfelder gerne intensiv!** Falls du eine Bewertung vergibst, die vom Optimum abweicht (z. B. eine 2 oder 3), oder wenn dir konkrete medizinische Ungereimtheiten, auffällige Zeitabstände oder unplausible Medikamentendosen ins Auge springen, trage dies bitte kurz ein. Deine Anmerkungen helfen uns enorm dabei, deine Entscheidungen medizinisch nachzuvollziehen.
+
   **Was bedeuten die Zahlen 1 bis 5?**
   Die Skala reicht immer von der schlechtesten (1) bis zur besten (5) Bewertung:
-  * **1** = Sehr negativ (z.B. sehr unplausibel, unvollständig, unrealistisch, inkonsistent oder insgesamt schlecht)
-  * **5** = Sehr positiv (z.B. sehr plausibel, sehr vollständig, sehr realistisch, sehr konsistent oder insgesamt hervorragend)
+  * **1** = Sehr negativ (z.B. sehr unplausibel, sehr inkonsistent, sehr unlogisch oder insgesamt schlecht)
+  * **5** = Sehr positiv (z.B. sehr plausibel, sehr konsistent, sehr logisch oder insgesamt hervorragend)
   * Die Werte **2, 3 und 4** dienen zur feineren Abstufung deiner Einschätzung dazwischen.
 
 ## 3. Speichern & Fortschritt

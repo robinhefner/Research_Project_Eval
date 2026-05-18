@@ -5,50 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const SUPABASE_ANON_KEY = 'sb_publishable_4fgeYxrBBxSJYe0qDm4uxw_GEnCvrqD';
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+    // --- App Zugriffsschutz ---
+    const APP_PASSWORD = 'evaluation2026';
+
     // --- Configuration ---
     // List of PDFs
     // BEGIN_PATIENT_FILES
     const pdfFiles = [
-        'data/real/Aleksandra_Scholtz_b4ad84e3.pdf',
-        'data/real/Alina_Trupp_05be053a.pdf',
-        'data/real/Annekatrin_Hörle_5fc6c362.pdf',
-        'data/real/Annelene_Mühle_4a628506.pdf',
-        'data/real/Annerose_Metz_de2e767b.pdf',
-        'data/real/Ariane_Zänker_e1115fc6.pdf',
-        'data/real/Aurelia_Sölzer_b3fdb3ea.pdf',
-        'data/real/Bertha_Preiß_542dd887.pdf',
-        'data/real/Danica_Trupp_88200b02.pdf',
-        'data/real/Eberhardt_Linke_99a4a5b1.pdf',
-        'data/real/Ekrem_Bruder_2a08ee7c.pdf',
-        'data/real/Elfi_Langern_6d3cce03.pdf',
-        'data/real/Elizabeth_Eigenwillig_deaba184.pdf',
-        'data/real/Elmar_Hermann_9465d03a.pdf',
-        'data/real/Felicitas_Hörle_51082b16.pdf',
-        'data/real/Folker_Bohnbach_591876a3.pdf',
-        'data/real/Gitte_auch Schlauchin_0e56fab7.pdf',
-        'data/real/Hanne-Lore_Gunpf_560429b5.pdf',
-        'data/real/Hans-Georg_Peukert_f93d5ba6.pdf',
-        'data/real/Hassan_Kranz_67cf6099.pdf',
-        'data/real/Hinrich_Trommler_b27c70c1.pdf',
-        'data/real/Hubertus_Budig_2ff062e4.pdf',
-        'data/real/Ilona_Wulff_24d884ca.pdf',
-        'data/real/Jozef_Briemer_89b90a71.pdf',
-        'data/real/Karl-August_Bloch_861ceca6.pdf',
-        'data/real/Kati_Segebahn_4b3f609e.pdf',
-        'data/real/Kirstin_Nohlmans_77a6099b.pdf',
-        'data/real/Kristin_Mende_cc6db108.pdf',
-        'data/real/Marcus_Hövel_5563e54b.pdf',
-        'data/real/Nick_Dowerg_5ecf8cd4.pdf',
-        'data/real/Oswin_Carsten_90dd9b7d.pdf',
-        'data/real/Piotr_Döring_0b95337e.pdf',
-        'data/real/Rosemarie_Rogge_ec7ebdcc.pdf',
-        'data/real/Steve_Berger_dfdb2d22.pdf',
-        'data/real/Tatjana_Kensy_b93a837d.pdf',
-        'data/real/Traugott_Haering_23cf7bd7.pdf',
-        'data/real/Viktor_Sager_871e8f09.pdf',
-        'data/real/Vincent_Wagner_d5dcc4a3.pdf',
-        'data/real/Wulf_Reinhardt_92c7f2e5.pdf',
-        'data/real/Yasemin_Hornich_1fdb52db.pdf',
         'data/synthea/Alexander_Lehmann_b68fb75d.pdf',
         'data/synthea/Anke_Peters_630dc962.pdf',
         'data/synthea/Bernd_Heinrich_5a3366ac.pdf',
@@ -173,10 +136,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- DOM Elements ---
     const screens = {
+        password: document.getElementById('password-screen'),
         start: document.getElementById('start-screen'),
         eval: document.getElementById('eval-screen'),
         end: document.getElementById('end-screen')
     };
+
+    const passwordForm = document.getElementById('password-form');
+    const appPasswordInput = document.getElementById('app-password');
+    const passwordError = document.getElementById('password-error');
 
     const startForm = document.getElementById('start-form');
     const doctorNameInput = document.getElementById('doctor-name'); // This is now a <select>
@@ -199,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initApp() {
         renderCriteriaForm();
-        showScreen('start');
+        showScreen('password');
     }
 
     function renderCriteriaForm() {
@@ -221,9 +189,12 @@ document.addEventListener('DOMContentLoaded', () => {
             group.innerHTML = `
                 <div class="criterion-header">
                     <div class="criterion-title">${c.title}</div>
-                    <div class="tooltip-container">
-                        <span class="info-icon" title="">i</span>
-                        <div class="tooltip-text">${c.description}</div>
+                    <div class="header-actions">
+                        <button type="button" class="btn-comment-toggle" data-id="${c.id}" title="Kommentar hinzufügen">+</button>
+                        <div class="tooltip-container">
+                            <span class="info-icon" title="">i</span>
+                            <div class="tooltip-text">${c.description}</div>
+                        </div>
                     </div>
                 </div>
                 <div class="likert-scale">
@@ -233,9 +204,40 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span>${c.minLabel}</span>
                     <span>${c.maxLabel}</span>
                 </div>
+                <div id="${c.id}-comment-container" class="comment-container">
+                    <textarea name="${c.id}_comment" class="comment-textarea" placeholder="Kommentar hinzufügen (optional)..."></textarea>
+                </div>
             `;
             criteriaContainer.appendChild(group);
         });
+
+        // Event-Delegation für die Kommentar-Buttons (nur einmal hinzufügen)
+        criteriaContainer.removeEventListener('click', handleCommentToggle);
+        criteriaContainer.addEventListener('click', handleCommentToggle);
+    }
+
+    function handleCommentToggle(e) {
+        const toggleBtn = e.target.closest('.btn-comment-toggle');
+        if (!toggleBtn) return;
+        
+        const criterionId = toggleBtn.getAttribute('data-id');
+        const container = document.getElementById(`${criterionId}-comment-container`);
+        if (!container) return;
+        
+        if (container.classList.contains('active')) {
+            container.classList.remove('active');
+            toggleBtn.textContent = '+';
+            toggleBtn.title = 'Kommentar hinzufügen';
+            toggleBtn.classList.remove('active');
+        } else {
+            container.classList.add('active');
+            toggleBtn.textContent = '−'; // Echtes Minuszeichen
+            toggleBtn.title = 'Kommentar ausblenden';
+            toggleBtn.classList.add('active');
+            
+            const textarea = container.querySelector('textarea');
+            if (textarea) textarea.focus();
+        }
     }
 
     // --- Navigation & UI ---
@@ -257,11 +259,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
         evalForm.reset();
 
+        // Reset comment toggle states
+        const activeContainers = criteriaContainer.querySelectorAll('.comment-container.active');
+        activeContainers.forEach(container => container.classList.remove('active'));
+        
+        const activeButtons = criteriaContainer.querySelectorAll('.btn-comment-toggle.active');
+        activeButtons.forEach(btn => {
+            btn.classList.remove('active');
+            btn.textContent = '+';
+            btn.title = 'Kommentar hinzufügen';
+        });
+
         // Hide prev button as we don't allow going back to already saved ones in cloud mode
         btnPrev.style.display = 'none';
     }
 
     // --- Event Listeners ---
+    passwordForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const enteredPassword = appPasswordInput.value;
+        if (enteredPassword === APP_PASSWORD) {
+            passwordError.style.display = 'none';
+            showScreen('start');
+        } else {
+            passwordError.style.display = 'block';
+            appPasswordInput.value = '';
+            appPasswordInput.focus();
+        }
+    });
+
     startForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const name = doctorNameInput.value.trim();
@@ -327,6 +353,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const responses = {};
         criteria.forEach(c => {
             responses[c.id] = formData.get(c.id);
+            const comment = formData.get(`${c.id}_comment`);
+            responses[`${c.id}_comment`] = comment && comment.trim() !== '' ? comment.trim() : null;
         });
 
         const currentPdfPath = state.remainingPdfs[0];
@@ -341,9 +369,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         doctor_name: state.doctorName,
                         pdf_filename: pdfName,
                         c1: parseInt(responses.c1),
+                        c1_comment: responses.c1_comment,
                         c2: parseInt(responses.c2),
+                        c2_comment: responses.c2_comment,
                         c3: parseInt(responses.c3),
+                        c3_comment: responses.c3_comment,
                         c4: parseInt(responses.c4),
+                        c4_comment: responses.c4_comment,
                         created_at: timestamp
                     }
                 ]);

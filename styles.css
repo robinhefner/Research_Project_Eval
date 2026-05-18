@@ -104,7 +104,7 @@ p { color: var(--text-muted); margin-bottom: 1.5rem; }
 .mt-4 { margin-top: 1rem; }
 
 /* Cards & Layouts */
-#start-screen, #end-screen {
+#password-screen, #start-screen, #end-screen {
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
@@ -425,4 +425,82 @@ p { color: var(--text-muted); margin-bottom: 1.5rem; }
     visibility: visible;
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Comment Box Styles */
+.header-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.btn-comment-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: var(--border-color);
+    color: var(--text-muted);
+    border: none;
+    border-radius: 50%;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    line-height: 1;
+    user-select: none;
+}
+
+.btn-comment-toggle:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: scale(1.1);
+}
+
+.btn-comment-toggle.active {
+    background-color: #64748b;
+    color: white;
+}
+
+.btn-comment-toggle.active:hover {
+    background-color: #ef4444;
+}
+
+.comment-container {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 0;
+}
+
+.comment-container.active {
+    max-height: 100px;
+    opacity: 1;
+    margin-top: 1rem;
+}
+
+.comment-textarea {
+    width: 100%;
+    height: 70px;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-family: inherit;
+    resize: none;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background-color: white;
+    color: var(--text-main);
+}
+
+.comment-textarea::placeholder {
+    color: #94a3b8;
+}
+
+.comment-textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
